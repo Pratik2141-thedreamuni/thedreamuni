@@ -1,0 +1,10 @@
+PassengerEnabled on
+PassengerAppRoot /home/ATHÁRVA_PATIL/public_html/flask_app
+PassengerAppType wsgi
+PassengerStartupFile passenger_wsgi.py
+
+# Optionally set the environment
+SetEnv FLASK_ENV production
+
+# If you want to serve static files directly with Passenger (highly recommended), enable:
+# PassengerPreStart http://thedreamuni.com/

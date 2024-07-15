@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Advisor - TheDreamUni</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Background animation</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
+      </head>
+      
+      <body>
+        <div class="text-container">
+          <h1 class="texth1">Thedreamuni</h1>
+        </div>
+      </body>  
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <h1 class="text-center">Get Personalized University Recommendations</h1>
+        <form id="recommendationForm">
+            <input type="hidden" id="userId" value="user123">
+            <div class="form-step form-step-active">
+                <div class="form-group">
+                    <label for="studentName">Student Name:</label>
+                    <input type="text" class="form-control" id="studentName" name="studentName" required>
+                </div>
+                <button type="button" class="btn btn-primary" id="nextStep1">Next</button>
+            </div>
+            <div class="form-step">
+                <div class="form-group">
+                    <label for="highestEducation">Highest Education:</label>
+                    <input type="text" class="form-control" id="highestEducation" name="highestEducation" required>
+                </div>
+                <button type="button" class="btn btn-secondary" id="prevStep2">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep2">Next</button>
+            </div>
+            <div class="form-step">
+                <div class="form-group">
+                    <label for="grades">Grades (CGPA 1-4):</label>
+                    <input type="number" step="0.1" class="form-control" id="grades" name="grades" min="1" max="4" required>
+                    <small class="form-text text-muted">
+                        In the CGPA system, values range from 1.0 to 4.0:
+                        <ul>
+                            <li><strong>4.0</strong>: Excellent (A)</li>
+                            <li><strong>3.0 - 3.9</strong>: Good (B)</li>
+                            <li><strong>2.0 - 2.9</strong>: Average (C)</li>
+                            <li><strong>1.0 - 1.9</strong>: Below Average (D)</li>
+                            <li><strong>Below 1.0</strong>: Failing (F)</li>
+                        </ul>
+                    </small>
+                </div>
+                <button type="button" class="btn btn-secondary" id="prevStep3">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep3">Next</button>
+            </div>
+            <div class="form-step">
+                <div class="form-group">
+                    <label for="ieltsScore">IELTS Score:</label>
+                    <input type="number" step="0.1" class="form-control" id="ieltsScore" name="ieltsScore" min="1" max="9" required>
+                </div>
+                <button type="button" class="btn btn-secondary" id="prevStep4">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep4">Next</button>
+            </div>
+            <div class="form-step">
+                <div class="form-group">
+                    <label for="targetCountry">Targeted Country:</label>
+                    <select class="form-control" id="targetCountry" name="targetCountry" required>
+                        <option value="">Select a country</option>
+                        <option value="United States of America">United States of America</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="India">India</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-secondary" id="prevStep5">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep5">Next</button>
+            </div>
+            <div class="form-step">
+                <div class="form-group">
+                    <label for="studyPursue">What study do you want to pursue?</label>
+                    <select class="form-control" id="studyPursue" name="studyPursue" required>
+                        <option value="">Select an option</option>
+                        <option value="Bachelors">Bachelors</option>
+                        <option value="Masters">Masters</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group" id="otherStudyGroup" style="display: none;">
+                    <label for="otherStudy">Specify the study:</label>
+                    <input type="text" class="form-control" id="otherStudy" name="otherStudy">
+                </div>
+                <button type="button" class="btn btn-secondary" id="prevStep6">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep6">Next</button>
+            </div>
+            <div class="form-step">
+                <div class="form-group">
+                    <label for="subject">In which subject do you want to pursue?</label>
+                    <input type="text" class="form-control" id="subject" name="subject" required>
+                </div>
+                <button type="button" class="btn btn-secondary" id="prevStep7">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep7">Next</button>
+            </div>
+            <div class="form-step">
+                <div class="form-group">
+                    <label for="budget">Your Budget for the Tuition Fees of Universities:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="currencySymbol">₹</span>
+                        </div>
+                        <input type="number" step="0.01" class="form-control" id="budget" name="budget" required>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary" id="prevStep8">Previous</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+        <div class="loader" style="display:none;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="welcome-message">
+            <h2>Welcome to TheDreamUni!</h2>
+            <p>Type your questions below to get started.</p>
+        </div>
+        <div class="messages" id="messages"></div>
+        <div class="input-group">
+            <input type="text" id="userInput" class="form-control" placeholder="Type your message...">
+            <button class="btn btn-primary" id="sendButton">&#10145;</button>
+            <div class="loading-indicator" id="loadingIndicator" style="display: none;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const recommendationForm = document.getElementById('recommendationForm');
+    const formContainer = document.querySelector('.form-container');
+    const chatContainer = document.querySelector('.chat-container');
+    const messagesDiv = document.getElementById('messages');
+    const userInput = document.getElementById('userInput');
+    const sendButton = document.getElementById('sendButton');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const userId = document.getElementById('userId').value;
+    const loader = document.querySelector('.loader');
+    const h1Element = document.querySelector('.texth1');
+
+    const appendMessage = (message, className) => {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${className}`;
+        messageDiv.innerHTML = message;
+        messagesDiv.appendChild(messageDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    const toggleLoading = (show) => {
+        loadingIndicator.style.display = show ? 'block' : 'none';
+    }
+
+    const removeEventListeners = (element) => {
+        const newElement = element.cloneNode(true);
+        element.parentNode.replaceChild(newElement, element);
+        return newElement;
+    }
+
+    const toggleForm = (disable) => {
+        const elements = recommendationForm.elements;
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].disabled = disable;
+        }
+    }
+
+    const currencyMapping = {
+        "United States of America": "$",
+        "Germany": "€",
+        "Canada": "C$",
+        "Australia": "A$",
+        "India": "₹"
+    }
+
+    document.getElementById('targetCountry').addEventListener('change', function() {
+        const currencySymbol = document.getElementById('currencySymbol');
+        const selectedCountry = this.value;
+        currencySymbol.innerText = currencyMapping[selectedCountry] || "₹";
+    });
+
+    recommendationForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        loader.style.display = 'block';
+        toggleForm(true);
+
+        const formData = {
+            userId: userId,
+            studentName: document.getElementById('studentName').value,
+            highestEducation: document.getElementById('highestEducation').value,
+            grades: document.getElementById('grades').value,
+            ieltsScore: document.getElementById('ieltsScore').value,
+            targetCountry: document.getElementById('targetCountry').value,
+            studyPursue: document.getElementById('studyPursue').value,
+            otherStudy: document.getElementById('otherStudy').value,
+            subject: document.getElementById('subject').value,
+            budget: document.getElementById('budget').value,
+        };
+
+        fetch('/recommend', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            h1Element.style.marginTop = '15rem';
+            loader.style.display = 'none';
+            formContainer.style.display = 'none';
+            chatContainer.style.display = 'flex';
+            appendMessage(data.reply, 'bot-message');
+            toggleForm(false);
+        })
+        .catch(error => {
+            loader.style.display = 'none';
+            appendMessage('Error: ' + error, 'bot-message');
+            toggleForm(false);
+        });
+    });
+
+    sendButton.addEventListener('click', () => {
+        const message = userInput.value.trim();
+        if (message) {
+            appendMessage(message, 'user-message');
+            toggleLoading(true);
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: userId, message: message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                toggleLoading(false);
+                appendMessage(data.reply, 'bot-message');
+            })
+            .catch(error => {
+                toggleLoading(false);
+                appendMessage('Error: ' + error, 'bot-message');
+            });
+            userInput.value = '';
+        }
+    });
+
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendButton.click();
+        }
+    });
+
+    const validateStep = (inputId, min, max) => {
+        const input = document.getElementById(inputId);
+        const value = parseFloat(input.value);
+        if (value >= min && value <= max) {
+            return true;
+        } else {
+            alert(`Please enter a value between ${min} and ${max}.`);
+            return false;
+        }
+    };
+
+    document.getElementById('nextStep1').addEventListener('click', () => {
+        if (document.getElementById('studentName').value.trim() !== "") {
+            document.querySelector('.form-step-active').classList.remove('form-step-active');
+            document.querySelectorAll('.form-step')[1].classList.add('form-step-active');
+        } else {
+            alert("Please fill in your name.");
+        }
+    });
+    document.getElementById('prevStep2').addEventListener('click', () => {
+        document.querySelector('.form-step-active').classList.remove('form-step-active');
+        document.querySelectorAll('.form-step')[0].classList.add('form-step-active');
+    });
+    document.getElementById('nextStep2').addEventListener('click', () => {
+        if (document.getElementById('highestEducation').value.trim() !== "") {
+            document.querySelector('.form-step-active').classList.remove('form-step-active');
+            document.querySelectorAll('.form-step')[2].classList.add('form-step-active');
+        } else {
+            alert("Please fill in your highest education.");
+        }
+    });
+    document.getElementById('prevStep3').addEventListener('click', () => {
+        document.querySelector('.form-step-active').classList.remove('form-step-active');
+        document.querySelectorAll('.form-step')[1].classList.add('form-step-active');
+    });
+    document.getElementById('nextStep3').addEventListener('click', () => {
+        if (validateStep('grades', 1, 4)) {
+            document.querySelector('.form-step-active').classList.remove('form-step-active');
+            document.querySelectorAll('.form-step')[3].classList.add('form-step-active');
+        }
+    });
+    document.getElementById('prevStep4').addEventListener('click', () => {
+        document.querySelector('.form-step-active').classList.remove('form-step-active');
+        document.querySelectorAll('.form-step')[2].classList.add('form-step-active');
+    });
+    document.getElementById('nextStep4').addEventListener('click', () => {
+        if (validateStep('ieltsScore', 1, 9)) {
+            document.querySelector('.form-step-active').classList.remove('form-step-active');
+            document.querySelectorAll('.form-step')[4].classList.add('form-step-active');
+        }
+    });
+    document.getElementById('prevStep5').addEventListener('click', () => {
+        document.querySelector('.form-step-active').classList.remove('form-step-active');
+        document.querySelectorAll('.form-step')[3].classList.add('form-step-active');
+    });
+    document.getElementById('nextStep5').addEventListener('click', () => {
+        if (document.getElementById('targetCountry').value !== "") {
+            document.querySelector('.form-step-active').classList.remove('form-step-active');
+            document.querySelectorAll('.form-step')[5].classList.add('form-step-active');
+        } else {
+            alert("Please select a country.");
+        }
+    });
+    document.getElementById('prevStep6').addEventListener('click', () => {
+        document.querySelector('.form-step-active').classList.remove('form-step-active');
+        document.querySelectorAll('.form-step')[4].classList.add('form-step-active');
+    });
+    document.getElementById('nextStep6').addEventListener('click', () => {
+        if (document.getElementById('studyPursue').value !== "") {
+            document.querySelector('.form-step-active').classList.remove('form-step-active');
+            document.querySelectorAll('.form-step')[6].classList.add('form-step-active');
+        } else {
+            alert("Please select a study type.");
+        }
+    });
+    document.getElementById('prevStep7').addEventListener('click', () => {
+        document.querySelector('.form-step-active').classList.remove('form-step-active');
+        document.querySelectorAll('.form-step')[5].classList.add('form-step-active');
+    });
+    document.getElementById('nextStep7').addEventListener('click', () => {
+        if (document.getElementById('subject').value.trim() !== "") {
+            document.querySelector('.form-step-active').classList.remove('form-step-active');
+            document.querySelectorAll('.form-step')[7].classList.add('form-step-active');
+        } else {
+            alert("Please fill in the subject.");
+        }
+    });
+    document.getElementById('prevStep8').addEventListener('click', () => {
+        document.querySelector('.form-step-active').classList.remove('form-step-active');
+        document.querySelectorAll('.form-step')[6].classList.add('form-step-active');
+    });
+
+    document.querySelectorAll('.form-step').forEach((step, index) => {
+        step.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                if (step.querySelector('.btn-primary')) {
+                    step.querySelector('.btn-primary').click();
+                } else if (index > 0 && step.querySelector('.btn-secondary')) {
+                    step.querySelector('.btn-secondary').click();
+                }
+            }
+        });
+    });
+
+    document.getElementById('studyPursue').addEventListener('change', function () {
+        const otherStudyGroup = document.getElementById('otherStudyGroup');
+        if (this.value === 'Other') {
+            otherStudyGroup.style.display = 'block';
+            document.getElementById('otherStudy').required = true;
+        } else {
+            otherStudyGroup.style.display = 'none';
+            document.getElementById('otherStudy').required = false;
+        }
+    });
+</script>
+</body>
+</html>
