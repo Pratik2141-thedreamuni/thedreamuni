@@ -5,6 +5,4 @@ services:
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: gunicorn app:app
     runtime: python3  # Ensure Python 3 is used
-    envVars:
-      - key: OPENAI_API_KEY
-        value: "<your-placeholder-key>"
+
