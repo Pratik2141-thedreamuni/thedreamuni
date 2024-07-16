@@ -13,6 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Background animation</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
       </head>
       
       <body>
@@ -62,11 +63,30 @@
             </div>
             <div class="form-step">
                 <div class="form-group">
+                    <label for="ieltsTaken">Have you taken the IELTS?</label>
+                    <select class="form-control" id="ieltsTaken" name="ieltsTaken" required>
+                        <option value="">Select an option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group" id="ieltsScoreGroup" style="display: none;">
                     <label for="ieltsScore">IELTS Score:</label>
-                    <input type="number" step="0.1" class="form-control" id="ieltsScore" name="ieltsScore" min="1" max="9" required>
+                    <input type="number" step="0.1" class="form-control" id="ieltsScore" name="ieltsScore" min="1" max="9">
                 </div>
                 <button type="button" class="btn btn-secondary" id="prevStep4">Previous</button>
                 <button type="button" class="btn btn-primary" id="nextStep4">Next</button>
+            </div>            
+            <div class="form-step">
+                <div class="form-group">
+                    <label for="currentCountry">Currently Located Country:</label>
+                    <select class="form-control" id="currentCountry" name="currentCountry" required>
+                        <option value="">Select a country</option>
+                        <!-- Options will be populated using AI -->
+                    </select>
+                </div>
+                <button type="button" class="btn btn-secondary" id="prevStep5">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep5">Next</button>
             </div>
             <div class="form-step">
                 <div class="form-group">
@@ -78,10 +98,11 @@
                         <option value="Canada">Canada</option>
                         <option value="Australia">Australia</option>
                         <option value="India">India</option>
+                        <option value="notDecided">Not decided yet</option>
                     </select>
                 </div>
-                <button type="button" class="btn btn-secondary" id="prevStep5">Previous</button>
-                <button type="button" class="btn btn-primary" id="nextStep5">Next</button>
+                <button type="button" class="btn btn-secondary" id="prevStep6">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep6">Next</button>
             </div>
             <div class="form-step">
                 <div class="form-group">
@@ -97,20 +118,20 @@
                     <label for="otherStudy">Specify the study:</label>
                     <input type="text" class="form-control" id="otherStudy" name="otherStudy">
                 </div>
-                <button type="button" class="btn btn-secondary" id="prevStep6">Previous</button>
-                <button type="button" class="btn btn-primary" id="nextStep6">Next</button>
+                <button type="button" class="btn btn-secondary" id="prevStep7">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep7">Next</button>
             </div>
             <div class="form-step">
                 <div class="form-group">
                     <label for="subject">In which subject do you want to pursue?</label>
                     <input type="text" class="form-control" id="subject" name="subject" required>
                 </div>
-                <button type="button" class="btn btn-secondary" id="prevStep7">Previous</button>
-                <button type="button" class="btn btn-primary" id="nextStep7">Next</button>
+                <button type="button" class="btn btn-secondary" id="prevStep8">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextStep8">Next</button>
             </div>
             <div class="form-step">
                 <div class="form-group">
-                    <label for="budget">Your Budget for the Tuition Fees of Universities:</label>
+                    <label for="budget">Annual Budget for theTuition Fees of Universities:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="currencySymbol">₹</span>
@@ -118,7 +139,7 @@
                         <input type="number" step="0.01" class="form-control" id="budget" name="budget" required>
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary" id="prevStep8">Previous</button>
+                <button type="button" class="btn btn-secondary" id="prevStep9">Previous</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
@@ -203,7 +224,9 @@
             studentName: document.getElementById('studentName').value,
             highestEducation: document.getElementById('highestEducation').value,
             grades: document.getElementById('grades').value,
+            ieltsTaken: document.getElementById('ieltsTaken').value,
             ieltsScore: document.getElementById('ieltsScore').value,
+            currentCountry: document.getElementById('currentCountry').value,
             targetCountry: document.getElementById('targetCountry').value,
             studyPursue: document.getElementById('studyPursue').value,
             otherStudy: document.getElementById('otherStudy').value,
@@ -266,16 +289,15 @@
     });
 
     const validateStep = (inputId, min, max) => {
-        const input = document.getElementById(inputId);
-        const value = parseFloat(input.value);
-        if (value >= min && value <= max) {
-            return true;
-        } else {
-            alert(`Please enter a value between ${min} and ${max}.`);
-            return false;
-        }
-    };
-
+    const input = document.getElementById(inputId);
+    const value = parseFloat(input.value);
+    if (value >= min && value <= max) {
+        return true;
+    } else {
+        alert(`Please enter a value between ${min} and ${max}.`);
+        return false;
+    }
+};
     document.getElementById('nextStep1').addEventListener('click', () => {
         if (document.getElementById('studentName').value.trim() !== "") {
             document.querySelector('.form-step-active').classList.remove('form-step-active');
@@ -310,22 +332,39 @@
         document.querySelector('.form-step-active').classList.remove('form-step-active');
         document.querySelectorAll('.form-step')[2].classList.add('form-step-active');
     });
-    document.getElementById('nextStep4').addEventListener('click', () => {
-        if (validateStep('ieltsScore', 1, 9)) {
-            document.querySelector('.form-step-active').classList.remove('form-step-active');
-            document.querySelectorAll('.form-step')[4].classList.add('form-step-active');
+    document.getElementById('ieltsTaken').addEventListener('change', function() {
+    const ieltsScoreGroup = document.getElementById('ieltsScoreGroup');
+    const ieltsScoreInput = document.getElementById('ieltsScore');
+    if (this.value === "yes") {
+        ieltsScoreGroup.style.display = 'block';
+        ieltsScoreInput.required = true;
+    } else {
+        ieltsScoreGroup.style.display = 'none';
+        ieltsScoreInput.required = false;
+    }
+});
+document.getElementById('nextStep4').addEventListener('click', () => {
+    const ieltsTaken = document.getElementById('ieltsTaken').value;
+    if (ieltsTaken !== "") {
+        if (ieltsTaken === "yes" && !validateStep('ieltsScore', 1, 9)) {
+            return;
         }
-    });
+        document.querySelector('.form-step-active').classList.remove('form-step-active');
+        document.querySelectorAll('.form-step')[4].classList.add('form-step-active');
+    } else {
+        alert("Please select whether you have taken the IELTS.");
+    }
+});
     document.getElementById('prevStep5').addEventListener('click', () => {
         document.querySelector('.form-step-active').classList.remove('form-step-active');
         document.querySelectorAll('.form-step')[3].classList.add('form-step-active');
     });
     document.getElementById('nextStep5').addEventListener('click', () => {
-        if (document.getElementById('targetCountry').value !== "") {
+        if (document.getElementById('currentCountry').value !== "") {
             document.querySelector('.form-step-active').classList.remove('form-step-active');
             document.querySelectorAll('.form-step')[5].classList.add('form-step-active');
         } else {
-            alert("Please select a country.");
+            alert("Please select your currently located country.");
         }
     });
     document.getElementById('prevStep6').addEventListener('click', () => {
@@ -333,11 +372,11 @@
         document.querySelectorAll('.form-step')[4].classList.add('form-step-active');
     });
     document.getElementById('nextStep6').addEventListener('click', () => {
-        if (document.getElementById('studyPursue').value !== "") {
+        if (document.getElementById('targetCountry').value !== "") {
             document.querySelector('.form-step-active').classList.remove('form-step-active');
             document.querySelectorAll('.form-step')[6].classList.add('form-step-active');
         } else {
-            alert("Please select a study type.");
+            alert("Please select a target country.");
         }
     });
     document.getElementById('prevStep7').addEventListener('click', () => {
@@ -345,16 +384,28 @@
         document.querySelectorAll('.form-step')[5].classList.add('form-step-active');
     });
     document.getElementById('nextStep7').addEventListener('click', () => {
-        if (document.getElementById('subject').value.trim() !== "") {
+        if (document.getElementById('studyPursue').value !== "") {
             document.querySelector('.form-step-active').classList.remove('form-step-active');
             document.querySelectorAll('.form-step')[7].classList.add('form-step-active');
         } else {
-            alert("Please fill in the subject.");
+            alert("Please select a study type.");
         }
     });
     document.getElementById('prevStep8').addEventListener('click', () => {
         document.querySelector('.form-step-active').classList.remove('form-step-active');
         document.querySelectorAll('.form-step')[6].classList.add('form-step-active');
+    });
+    document.getElementById('nextStep8').addEventListener('click', () => {
+        if (document.getElementById('subject').value.trim() !== "") {
+            document.querySelector('.form-step-active').classList.remove('form-step-active');
+            document.querySelectorAll('.form-step')[8].classList.add('form-step-active');
+        } else {
+            alert("Please fill in the subject.");
+        }
+    });
+    document.getElementById('prevStep9').addEventListener('click', () => {
+        document.querySelector('.form-step-active').classList.remove('form-step-active');
+        document.querySelectorAll('.form-step')[7].classList.add('form-step-active');
     });
 
     document.querySelectorAll('.form-step').forEach((step, index) => {
@@ -377,6 +428,26 @@
         } else {
             otherStudyGroup.style.display = 'none';
             document.getElementById('otherStudy').required = false;
+        }
+    });
+
+    const fetchCurrentCountries = async () => {
+        const response = await fetch('/get_countries'); // Assuming an endpoint that returns all available countries
+        const countries = await response.json();
+        const currentCountrySelect = document.getElementById('currentCountry');
+        countries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country;
+            option.text = country;
+            currentCountrySelect.appendChild(option);
+        });
+    }
+
+    fetchCurrentCountries();
+
+    document.getElementById('targetCountry').addEventListener('change', function () {
+        if (this.value === 'notDecided') {
+            // Implement AI suggestion logic here
         }
     });
 </script>
