@@ -193,7 +193,132 @@ body {
         background-position: right top;
       }   
   }
+  /* Media queries for responsiveness */
+@media (max-width: 1200px) {
+    .texth1 {
+        font-size: 115px;
+    }
+}
 
+@media (max-width: 992px) {
+    .texth1 {
+        font-size: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .texth1 {
+        font-size: 70px;
+    }
+}
+
+@media (max-width: 576px) {
+    .texth1 {
+        font-size: 55px;
+    }
+}
+
+@media (max-width: 375px) {
+    .texth1 {
+        font-size: 40px;
+    }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+    .texth1 {
+        font-size: 100px;
+    }
+}
+
+@media (max-width: 992px) {
+    .texth1 {
+        font-size: 80px;
+    }
+
+    .container {
+        width: 80%;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .texth1 {
+        font-size: 60px;
+    }
+
+    .container {
+        width: 90%;
+        padding: 0 10px;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .chat-container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .texth1 {
+        font-size: 40px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 5px;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 5px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .chat-container {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 375px) {
+    .texth1 {
+        font-size: 30px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 2px;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 2px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .chat-container {
+        padding: 2px;
+    }
+}
   body {
     margin: 0;
     height: 100vh;
