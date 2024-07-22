@@ -307,7 +307,4 @@ def scrape():
     df = scrape_universities()
     return jsonify({"status": "success", "message": "Data scraped and saved.", "data": df.to_dict()})
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
     
