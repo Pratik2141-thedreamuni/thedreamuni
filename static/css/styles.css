@@ -46,7 +46,7 @@ body {
     white-space: pre-line;
 }
 .user-message {
-    background-color: #007bff;
+    background-color: #02bd2cab;
     color: #fff;
     align-self: flex-end;
     flex-direction: row-reverse;
